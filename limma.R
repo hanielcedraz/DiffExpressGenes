@@ -1,8 +1,22 @@
-suppressPackageStartupMessages(library(edgeR))
-suppressPackageStartupMessages(library(limma))
+Install_And_Load <- function(packages) {
+  k <- packages[!(packages %in% installed.packages()[,'Package'])];
+  if(length(k))
+  {ifelse(install.packages(k, repos = 'https://cran.rstudio.com/'), !requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+    BiocManager::install(k);}
+  
+  for(package_name in packages)
+  {suppressPackageStartupMessages(library(package_name, character.only = TRUE, quietly = TRUE));}
+}
 
 
-#setwd('/Volumes/HANIEL_RED/Susana/')
+Install_And_Load(c('edgeR', 'limma'))
+
+#suppressPackageStartupMessages(library(edgeR))
+#suppressPackageStartupMessages(library(limma))
+
+
+
 folder = "folder_containing_gene_counts_reads" 
 annof <- "annnoatation_from_biomart.txt"
 

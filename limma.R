@@ -1,16 +1,17 @@
-Install_And_Load <- function(packages) {
-  k <- packages[!(packages %in% installed.packages()[,'Package'])];
-  if(length(k))
-  {ifelse(install.packages(k, repos = 'https://cran.rstudio.com/'), !requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-    BiocManager::install(k);}
-  
-  for(package_name in packages)
-  {suppressPackageStartupMessages(library(package_name, character.only = TRUE, quietly = TRUE));}
+Install_Multiples_Packages <- function(packages) {
+    pack <- packages[!(packages %in% installed.packages()[,'Package'])];
+    if (length(pack)) {
+        install.packages(pack, repos = 'https://cran.rstudio.com/')
+    }
+
+    for (package_i in packages) {
+        suppressPackageStartupMessages(library(package_i, character.only = TRUE, quietly = TRUE))
+    }
+    write(paste("Packages instaled and load successfuly"), stderr())
 }
 
 
-Install_And_Load(c('edgeR', 'limma'))
+Install_Multiples_Packages(c('edgeR', 'limma'))
 
 #suppressPackageStartupMessages(library(edgeR))
 #suppressPackageStartupMessages(library(limma))

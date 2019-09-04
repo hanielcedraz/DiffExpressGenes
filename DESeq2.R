@@ -16,7 +16,7 @@ Install_Multiples_Packages(c("DESeq2", "edgeR"))
 #suppressPackageStartupMessages(library("edgeR"))
 
 
-folder = "folder_conteining_genes_counts" #Change it to your folder
+folder <- "folder_conteining_genes_counts" #Change it to your folder
 annof <- "annotation_file_from_biomart.txt" #change it to your biomart file
 
 samples <- read.table("samples_all.txt",header=T, as.is=T)
@@ -33,8 +33,8 @@ mean(colSums(counts[!noint,])/colSums(counts))
 
 
 # In edgeR, it is recommended to remove features without at least 1 read per million in n of the samples, where n is the size of the smallest group of replicates, 
-keep = rowSums(cpms >1) >=3 & !noint
-counts = counts[keep,]
+keep <- rowSums(cpms >1) >=3 & !noint
+counts <- counts[keep,]
 class(counts)
 
 

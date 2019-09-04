@@ -1,9 +1,23 @@
-suppressPackageStartupMessages(library("DESeq2"))
-suppressPackageStartupMessages(library("edgeR"))
+Install_Multiples_Packages <- function(packages) {
+    pack <- packages[!(packages %in% installed.packages()[,'Package'])];
+    if (length(pack)) {
+        install.packages(pack, repos = 'https://cran.rstudio.com/')
+    }
+
+    for (package_i in packages) {
+        suppressPackageStartupMessages(library(package_i, character.only = TRUE, quietly = TRUE))
+    }
+    write(paste("Packages instaled and load successfuly"), stderr())
+}
+
+Install_Multiples_Packages(c("DESeq2", "edgeR"))
+
+#suppressPackageStartupMessages(library("DESeq2"))
+#suppressPackageStartupMessages(library("edgeR"))
 
 
-folder = "folder_conteining_genes_counts" 
-annof <- "annotation_file_from_biomart.txt"
+folder = "folder_conteining_genes_counts" #Change it to your folder
+annof <- "annotation_file_from_biomart.txt" #change it to your biomart file
 
 samples <- read.table("samples_all.txt",header=T, as.is=T)
 countf <- file.path(folder, paste0(samples$SAMPLE_ID, '_ReadsPerGene.counts'))

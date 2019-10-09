@@ -77,7 +77,7 @@ dev.off()
 # edgeR Completely Randomized Design
 # 9. Create a design matrix to specify the factors that are expected to affect expression levels:
 design <- model.matrix( ~ -1 + condition)
-colnames(design) <- ("Level_1","Level_2")
+colnames(design) <- ("Level_1","Level_2") #Change it by your treatment levels
 rownames(design) <- samples$Animal_ID
 design
 

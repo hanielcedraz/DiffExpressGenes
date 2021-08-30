@@ -43,7 +43,7 @@ class(counts)
 
 dge <- DGEList(counts=counts)
 
-samples <- data.frame(SAMPLE_ID = samples$SAMPLE_ID, Mae = as.factor(samples$Mae), Tissue = as.factor(samples$Tissue), Sexo = as.factor(samples$Sexo), Treatment = as.factor(samples$Treatment))
+samples <- data.frame(SAMPLE_ID = samples$SAMPLE_ID, Mother = as.factor(samples$Mother), Tissue = as.factor(samples$Tissue), Sex = as.factor(samples$Sex), Treatment = as.factor(samples$Treatment))
 
 
 design <- model.matrix(~0+ model) #Set the used model
